@@ -1,6 +1,4 @@
-﻿
-
-using Application.Models;
+﻿using Application.Models;
 using Domain.Repositories;
 using MediatR;
 using Domain.Entities;
@@ -20,7 +18,6 @@ namespace Application.Businesses.SsoUser.Command
         public int RoleId { get; set; }
 
     }
-    public record EncryptedPassword(byte[] passwordSalt, byte[] passwordHash);
     internal class UserRegisterHandler : IRequestHandler<UserRegisterRequest, UserRegisterViewModel>
     {
         private readonly IUserRepository _userRepository;
@@ -53,28 +50,14 @@ namespace Application.Businesses.SsoUser.Command
 
             if (role == null) { throw new ArgumentNullException(nameof(role)); }
 
-            var encryptedPassword = CreatePasswordHash(request.Password);
+            //var encryptedPassword = CreatePasswordHash(request.Password);
 
             var newUser = User.New(request.FirstName, request.LastName, request.Username, 
-                encryptedPassword.passwordHash, encryptedPassword.passwordSalt, role);
+                request.Password, role);
 
             return newUser;
         }
-        private EncryptedPassword CreatePasswordHash(string password /*, CancellationToken cancellationToken*/)
-        {
-            if (password == null) throw new ArgumentNullException("password");
-            if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
 
-            byte[] passwordHash, passwordSalt;
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
-            {
-                passwordSalt = hmac.Key;
-
-                var byteStream = System.Text.Encoding.UTF8.GetBytes(password);
-                passwordHash = hmac.ComputeHash(byteStream/*, cancellationToken*/);
-            }
-            return new EncryptedPassword(passwordHash, passwordSalt);
-        }
         #endregion
 
 

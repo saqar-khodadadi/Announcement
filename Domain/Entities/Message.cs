@@ -28,6 +28,9 @@ namespace Domain.Entities
         public Priority Priority { get; private set; }
         #endregion
 
+        #region NavigationProperties
+        public virtual ICollection<Role> Roles { get; set; }
+        #endregion
 
         #region Functionalities
         public static Message New(string title, string descriptipn, Priority priority)
@@ -35,7 +38,5 @@ namespace Domain.Entities
             return new Message(title, descriptipn, priority);
         }
         #endregion
-
-
     }
 }
