@@ -6,19 +6,24 @@ using System.Net.Http.Headers;
 using System.Data;
 using System;
 using Application.Models.Outputs;
+using Application.Models.Inputs;
 
 namespace Application.Businesses.SsoUser.Command
 {
-    public class UserRegisterRequest: IRequest<UserRegisterViewModel>
+    public class UserRegisterRequest: IRequest<UserRegisterResultDto>
     {
-        public string FirstName { get;  set; }
-        public string LastName { get;  set; }
-        public string Username { get;  set; }
-        public string Password { get;  set; }
-        public int RoleId { get; set; }
 
+        private UserRegisterRequest()
+        {
+            
+        }
+        public UserRegisterRequest(UserRegisterInputDto userRegister)
+        {
+            UserRegister = userRegister;
+        }
+        public UserRegisterInputDto UserRegister { get; private set; }
     }
-    internal class UserRegisterHandler : IRequestHandler<UserRegisterRequest, UserRegisterViewModel>
+    internal class UserRegisterHandler : IRequestHandler<UserRegisterRequest, UserRegisterResultDto>
     {
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
@@ -27,18 +32,18 @@ namespace Application.Businesses.SsoUser.Command
             _userRepository = userRepository;
             _roleRepository = roleRepository;
         }
-        public async Task<UserRegisterViewModel> Handle(UserRegisterRequest request, CancellationToken cancellationToken)
+        public async Task<UserRegisterResultDto> Handle(UserRegisterRequest request, CancellationToken cancellationToken)
         {
-            var finalUser = await Create(request);
+            var finalUser = await Create(request.UserRegister);
 
-            var result = UserRegisterViewModel.MakeNew(finalUser);
+            var result = UserRegisterResultDto.MakeNew(finalUser);
 
             return result;
         }
 
         #region PrivateMethods
 
-        private async Task<User> Create(UserRegisterRequest request)
+        private async Task<User> Create(UserRegisterInputDto request)
         {
             if (string.IsNullOrWhiteSpace(request.Password))
                 throw new Exception("Password is required");
@@ -54,6 +59,8 @@ namespace Application.Businesses.SsoUser.Command
 
             var newUser = User.New(request.FirstName, request.LastName, request.Username, 
                 request.Password, role);
+
+            await _userRepository.AddAsync(newUser);
 
             return newUser;
         }

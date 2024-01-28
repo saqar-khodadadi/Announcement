@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Application.Models.Outputs
 {
-    public class UserLoginViewModel
+    public class UserLoginResultDto
     {
 
         #region CTOR
-        private UserLoginViewModel(int id, string username, string firstName, string lastName, string token)
+        private UserLoginResultDto(int id, string username, string firstName, string lastName, string token)
         {
             Id = id;
             Username = username;
@@ -30,9 +30,9 @@ namespace Application.Models.Outputs
 
 
         #region Functionalities
-        public static UserLoginViewModel MakeNew(int id, string username, string firstName, string lastName, string token)
+        public static UserLoginResultDto MakeNew(int id, string username, string firstName, string lastName, string token)
         {
-            return new UserLoginViewModel(id, username, firstName, lastName, token);
+            return new UserLoginResultDto(id, username, firstName, lastName, token);
         }
         #endregion
     }

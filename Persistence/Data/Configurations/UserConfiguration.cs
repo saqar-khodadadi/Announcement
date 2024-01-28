@@ -16,6 +16,14 @@ namespace Persistence.Data.Configurations
             builder.ToTable(nameof(User), "SSO");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Username).HasMaxLength(25);
+
+            builder.OwnsOne(d => d.Password, c =>
+            {
+                c.Property(s => s.PasswordSalt);
+                c.Property(s => s.PasswordHash);
+            });
+
+
         }
     }
 }

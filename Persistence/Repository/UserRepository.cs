@@ -16,7 +16,7 @@ namespace Persistence.Repository
 
         public async Task<User> GetUserWithRoleByUsername(string username)
         {
-            return await _context.Set<User>().FirstOrDefaultAsync(x => x.Username == username);
+            return await _context.Set<User>().Include(x=>x.Roles).FirstOrDefaultAsync(x => x.Username == username);
         }
     }
 }

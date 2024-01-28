@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Application.Models.Outputs
 {
-    public class UserRegisterViewModel
+    public class UserRegisterResultDto
     {
         #region CTOR
-        private UserRegisterViewModel(User user)
+        private UserRegisterResultDto(User user)
         {
             Id = user.Id;
             Username = user.Username;
@@ -27,9 +27,9 @@ namespace Application.Models.Outputs
         #endregion
 
         #region Functionalities
-        public static UserRegisterViewModel MakeNew(User user)
+        public static UserRegisterResultDto MakeNew(User user)
         {
-            return new UserRegisterViewModel(user);
+            return new UserRegisterResultDto(user);
         }
         #endregion
 
