@@ -5,7 +5,7 @@ namespace Application.Businesses.ReportMessage.Command
 {
     public class DeleteMessageRequest : IRequest
     {
-        internal int Id { get; set; }
+        internal int Id { get; private set; }
         public void SetMessageId(int id)
         { Id = id; }
     }
