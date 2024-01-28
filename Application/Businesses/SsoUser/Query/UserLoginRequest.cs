@@ -1,20 +1,14 @@
-﻿using Application.Models.Inputs;
-using Application.Models.Outputs;
+﻿using Application.Models.Inputs.UserDtos;
+using Application.Models.Outputs.UserDtos;
 using Domain.Common.Helpers;
 using Domain.Entities;
 using Domain.Repositories;
 using MediatR;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualBasic.FileIO;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
 
 namespace Application.Businesses.SsoUser.Query
 {

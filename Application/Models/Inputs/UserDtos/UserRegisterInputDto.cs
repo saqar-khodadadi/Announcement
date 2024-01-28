@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Models.Inputs
+namespace Application.Models.Inputs.UserDtos
 {
     public class UserRegisterInputDto
     {

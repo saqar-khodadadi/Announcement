@@ -1,24 +1,17 @@
-﻿using Domain.Entities;
-using Domain.Enums;
+﻿using Application.Models.Inputs.MessageDtos;
+using Domain.Entities;
 using Domain.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Businesses.ReportMessage.Command
 {
     public class UpdateMessageRequest : IRequest
     {
-        internal int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public Priority Priority { get; set; }
-        public void SetMessageId(int id) 
-        { Id = id; }
-
+        public UpdateMessageRequest(UpdateMessageInputDto updateMessage)
+        {
+            UpdateMessage = updateMessage;
+        }
+        public UpdateMessageInputDto UpdateMessage { get; private set; }
     }
     internal class UpdateMessageHandler : IRequestHandler<UpdateMessageRequest>
     {
@@ -30,9 +23,9 @@ namespace Application.Businesses.ReportMessage.Command
 
         public async Task<Unit> Handle(UpdateMessageRequest request, CancellationToken cancellationToken)
         {
-            var updatedMessage = Message.New(request.Title, request.Description, request.Priority);
+            var updatedMessage = Message.New(request.UpdateMessage.Title, request.UpdateMessage.Description, request.UpdateMessage.Priority);
 
-            var finalMessage = await _messageRepository.UpdateAsync(updatedMessage, request.Id);
+            var finalMessage = await _messageRepository.UpdateAsync(updatedMessage, request.UpdateMessage.Id);
 
             if (finalMessage == null) throw new Exception("Storage encountered a problem");
 

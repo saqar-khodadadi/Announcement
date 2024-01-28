@@ -36,7 +36,7 @@ namespace Presentation.Controllers
         {
             try
             {
-                request.SetMessageId(id);
+                request.UpdateMessage.SetMessageId(id);
                 var result = await _mediator.Send(request);
                 return Ok(result);
             }

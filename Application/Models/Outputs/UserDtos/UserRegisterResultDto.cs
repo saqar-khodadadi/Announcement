@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Models.Outputs
+namespace Application.Models.Outputs.UserDtos
 {
     public class UserRegisterResultDto
     {
