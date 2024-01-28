@@ -19,8 +19,8 @@ namespace Persistence.Data.Configurations
 
             builder.OwnsOne(d => d.Password, c =>
             {
-                c.Property(s => s.PasswordSalt);
-                c.Property(s => s.PasswordHash);
+                c.Property(s => s.PasswordSalt).HasColumnName("PasswordSalt");
+                c.Property(s => s.PasswordHash).HasColumnName("PasswordHash");
             });
 
 

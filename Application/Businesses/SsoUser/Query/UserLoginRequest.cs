@@ -14,9 +14,12 @@ namespace Application.Businesses.SsoUser.Query
 {
     public class UserLoginRequest : IRequest<UserLoginResultDto>
     {
-        public UserLoginRequest(UserLoginInputDto userLoginInput)
+        private UserLoginRequest()
+        {            
+        }
+        public UserLoginRequest(UserLoginInputDto userLogin)
         {
-            UserLogin = userLoginInput;
+            UserLogin = userLogin;
         }
         public UserLoginInputDto UserLogin { get; private set; }
     }
