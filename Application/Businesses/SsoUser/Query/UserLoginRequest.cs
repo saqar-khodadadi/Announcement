@@ -1,4 +1,4 @@
-﻿using Application.Models;
+﻿using Application.Models.Outputs;
 using Domain.Common.Helpers;
 using Domain.Entities;
 using Domain.Repositories;

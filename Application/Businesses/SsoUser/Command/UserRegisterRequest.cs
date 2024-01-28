@@ -1,11 +1,11 @@
-﻿using Application.Models;
-using Domain.Repositories;
+﻿using Domain.Repositories;
 using MediatR;
 using Domain.Entities;
 using Domain.Repositories.Base;
 using System.Net.Http.Headers;
 using System.Data;
 using System;
+using Application.Models.Outputs;
 
 namespace Application.Businesses.SsoUser.Command
 {

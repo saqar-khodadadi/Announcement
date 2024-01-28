@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Models
+namespace Application.Models.Outputs
 {
     public class UserLoginViewModel
     {
@@ -32,7 +32,7 @@ namespace Application.Models
         #region Functionalities
         public static UserLoginViewModel MakeNew(int id, string username, string firstName, string lastName, string token)
         {
-            return new UserLoginViewModel( id, username, firstName, lastName, token);
+            return new UserLoginViewModel(id, username, firstName, lastName, token);
         }
         #endregion
     }
