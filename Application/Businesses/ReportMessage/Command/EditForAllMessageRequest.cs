@@ -37,17 +37,13 @@ namespace Application.Businesses.ReportMessage.Command
 
             if (message == null) throw new Exception("پیام وجود ندارد");
 
-            var roleIds = request
+            var roles = request
                 .EditForAllMessage
                 .AccessLevel
-                .Select(x => x);
+                .Select(async x => await _roleRepository.GetByIdAsync((int)x))
+                .Select(t=>t.Result)
+                .ToHashSet();
 
-            var roles = new HashSet<Role>();
-            foreach (Domain.Enums.AccessLevel roleId in roleIds)
-            {
-                var role = await _roleRepository.GetByIdAsync((int)roleId);
-                roles.Add(role);
-            }
             message.SetRolePermission(roles);
 
             return Unit.Value;
