@@ -9,7 +9,7 @@ namespace Application.Models.Inputs.MessageDtos
 {
     public class EditForAllMessageInputDto
     {
-        public int MessageId { get; set; }
+        internal int MessageId { get; set; }
         public void SetMessageId(int id)
         { MessageId = id; }
         public HashSet<AccessLevel> AccessLevel { get; set; }

@@ -9,6 +9,6 @@ namespace Domain.Enums
     public enum AccessLevel
     {
         MidLevelManager = 2,
-        High = 3,
+        Employee = 3,
     }
 }

@@ -33,7 +33,7 @@ namespace Application.Businesses.ReportMessage.Command
         }
         public async Task<Unit> Handle(EditForAllMessageRequest request, CancellationToken cancellationToken)
         {
-            var message = await _messageRepository.GetByIdAsync(request.EditForAllMessage.MessageId);
+            var message = await _messageRepository.GetByIdWithRolesAsync(request.EditForAllMessage.MessageId);
 
             if (message == null) throw new Exception("پیام وجود ندارد");
 

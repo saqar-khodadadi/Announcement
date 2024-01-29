@@ -8,7 +8,7 @@ namespace Application.Models.Inputs.MessageDtos
 {
     public class EditForEmployeeMessageInputDto
     {
-        public int MessageId { get; set; }
+        internal int MessageId { get; set; }
         public void SetMessageId(int id)
         { MessageId = id; }
         public bool EmployeeAllowed  { get; set; }
