@@ -24,7 +24,7 @@ namespace Persistence.Repository
             var result = await _context
                 .Set<Message>()
                 .Include(x=>x.Roles)
-                .FirstOrDefaultAsync(x => x.Id == id && x.Roles.Any(x => x.Id == 2));
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             return result;
         }

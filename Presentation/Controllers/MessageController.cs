@@ -68,7 +68,7 @@ namespace Presentation.Controllers
         {
             try
             {
-                request.EditForAllMessage.SetMessageId(id);
+                request.editForAllMessage.SetMessageId(id);
                 var result = await _mediator.Send(request);
                 return Ok(result);
             }

@@ -10,18 +10,21 @@ using System.Threading.Tasks;
 
 namespace Application.Businesses.ReportMessage.Command
 {
-    public class EditForAllMessageRequest : IRequest
-    {
-        private EditForAllMessageRequest()
-        {
-            
-        }
-        public EditForAllMessageRequest(EditForAllMessageInputDto editForAllMessage)
-        {
-            EditForAllMessage = editForAllMessage;
-        }
-        public EditForAllMessageInputDto EditForAllMessage { get; private set; }
-    }
+    //public class EditForAllMessageRequest : IRequest
+    //{
+    //    private EditForAllMessageRequest()
+    //    {
+
+    //    }
+    //    public EditForAllMessageRequest(EditForAllMessageInputDto editForAllMessage)
+    //    {
+    //        EditForAllMessage = editForAllMessage;
+    //    }
+    //    public EditForAllMessageInputDto EditForAllMessage { get; private set; }
+    //}
+
+    public record EditForAllMessageRequest(EditForAllMessageInputDto editForAllMessage) : IRequest;
+
     internal class EditForAllMessageHandler : IRequestHandler<EditForAllMessageRequest>
     {
         private readonly IMessageRepository _messageRepository;
@@ -33,12 +36,12 @@ namespace Application.Businesses.ReportMessage.Command
         }
         public async Task<Unit> Handle(EditForAllMessageRequest request, CancellationToken cancellationToken)
         {
-            var message = await _messageRepository.GetByIdWithRolesAsync(request.EditForAllMessage.MessageId);
+            var message = await _messageRepository.GetByIdWithRolesAsync(request.editForAllMessage.MessageId);
 
             if (message == null) throw new Exception("پیام وجود ندارد");
 
             var roles = request
-                .EditForAllMessage
+                .editForAllMessage
                 .AccessLevel
                 .Select(async x => await _roleRepository.GetByIdAsync((int)x))
                 .Select(t=>t.Result)
