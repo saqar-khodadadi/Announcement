@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Enums;
 
 namespace Application.Models.Inputs.MessageDtos
 {
     public class InsertMessageInputDto
     {
-        
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public Priority Priority { get; set; }
     }
 }
