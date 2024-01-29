@@ -62,12 +62,13 @@ namespace Presentation.Controllers
         }
 
 
-        [HttpPut("[action]")]
+        [HttpPut("[action]/{id:int}")]
         [Authorize(Roles = "SENIORMANAGER")]
         public async Task<IActionResult> EditForAll([FromRoute] int id, EditForAllMessageRequest request)
         {
             try
             {
+                request.EditForAllMessage.SetMessageId(id);
                 var result = await _mediator.Send(request);
                 return Ok(result);
             }
@@ -78,12 +79,13 @@ namespace Presentation.Controllers
         }
 
 
-        [HttpPut("[action]")]
+        [HttpPut("[action]/{id:int}")]
         [Authorize(Roles = "MIDLEVELMANAGER")]
-        public async Task<IActionResult> EditForEmployee([FromRoute] int id, DeleteMessageRequest request)
+        public async Task<IActionResult> EditForEmployee([FromRoute] int id, EditForEmployeeMessageRequest request)
         {
             try
             {
+                request.EditForEmployeeMessage.SetMessageId(id);
                 var result = await _mediator.Send(request);
                 return Ok(result);
             }

@@ -25,7 +25,7 @@ namespace Application.Businesses.ReportMessage.Command
         {
             var updatedMessage = Message.New(request.UpdateMessage.Title, request.UpdateMessage.Description, request.UpdateMessage.Priority);
 
-            var finalMessage = await _messageRepository.UpdateAsync(updatedMessage, request.UpdateMessage.Id);
+            var finalMessage = await _messageRepository.UpdateAsync(updatedMessage, request.UpdateMessage.MessageId);
 
             if (finalMessage == null) throw new Exception("Storage encountered a problem");
 

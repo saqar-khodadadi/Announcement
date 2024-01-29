@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace Application.Models.Inputs.MessageDtos
 {
-    public class UpdateMessageInputDto
+    public class EditForAllMessageInputDto
     {
-        internal int MessageId { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public Priority Priority { get; set; }
+        public int MessageId { get; set; }
         public void SetMessageId(int id)
         { MessageId = id; }
+        public HashSet<AccessLevel> AccessLevel { get; set; }
     }
 }

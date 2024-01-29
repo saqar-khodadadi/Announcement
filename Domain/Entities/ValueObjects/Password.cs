@@ -43,7 +43,7 @@ namespace Domain.Entities.ValueObjects
             }
             var pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()-_+=]).{6,}$";
 
-            if (Regex.IsMatch(password, pattern))
+            if (!Regex.IsMatch(password, pattern))
             {
                 throw new ArgumentException("You are entring wrong format for your password");
             }

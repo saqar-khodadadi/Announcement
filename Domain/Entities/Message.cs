@@ -37,6 +37,11 @@ namespace Domain.Entities
         {
             return new Message(title, descriptipn, priority);
         }
+
+        public void SetRolePermission(HashSet<Role> roles)
+        {
+            Roles = roles;
+        }
         #endregion
     }
 }
