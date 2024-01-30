@@ -10,19 +10,6 @@ using System.Threading.Tasks;
 
 namespace Application.Businesses.ReportMessage.Command
 {
-    //public class EditForAllMessageRequest : IRequest
-    //{
-    //    private EditForAllMessageRequest()
-    //    {
-
-    //    }
-    //    public EditForAllMessageRequest(EditForAllMessageInputDto editForAllMessage)
-    //    {
-    //        EditForAllMessage = editForAllMessage;
-    //    }
-    //    public EditForAllMessageInputDto EditForAllMessage { get; private set; }
-    //}
-
     public record EditForAllMessageRequest(EditForAllMessageInputDto editForAllMessage) : IRequest;
 
     internal class EditForAllMessageHandler : IRequestHandler<EditForAllMessageRequest>
